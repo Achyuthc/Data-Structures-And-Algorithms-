@@ -8,6 +8,9 @@ A graph is bipartite if the nodes can be partitioned into two independent sets A
 
 Return true if and only if it is bipartite.*/
 
+
+Solution 1:BFS
+
 class Solution {
 public:
     bool isBipartite(vector<vector<int>>& graph) {
@@ -63,4 +66,46 @@ public:
   }
         
     
+};
+
+Solution 2:DFS
+
+
+class Solution {
+public:
+    bool dfs(int u,vector<vector<int>> &graph,int colored[])
+    {
+        for(int v:graph[u])
+        {
+            if(!colored[v])
+            {
+                colored[v]=-colored[u];
+                if(!dfs(v,graph,colored))
+                    return false;
+            }
+            else if(colored[v]==colored[u])
+            {
+                return false;
+            }
+                
+        }
+        return true;
+    }
+    bool isBipartite(vector<vector<int>>& graph) {
+        
+        int numberOfNodes=graph.size();
+        int colored[numberOfNodes];
+        memset(colored,0,sizeof(colored));
+        for(int u=0;u<numberOfNodes;u++)
+        {
+            if(!colored[u])
+            {
+                colored[u]=1;
+                if(!dfs(u,graph,colored))
+                    return false;
+            }
+                
+        }
+        return true;
+    }
 };
