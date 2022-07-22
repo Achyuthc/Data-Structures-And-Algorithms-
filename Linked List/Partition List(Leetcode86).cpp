@@ -2,6 +2,23 @@
 
 You should preserve the original relative order of the nodes in each of the two partitions.*/
 
+
+Approach
+
+4 cases with 2 nodes
+    2 nodes
+* node1 stores all the nodes whose values less than x
+* node2 stores all the nodes whose valus greate than or equal to x
+
+4 Cases
+1. node1 has 0 nodes and node2 has 0 nodes
+2. node1 has 0 nodes and node2 has>0 nodes
+3. node1 has >0 nodes and node2 has 0 nodes
+4. node1 has >0 nodes and node2 has > 0 nodes
+
+consider these cases and handle them carefully
+
+
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
